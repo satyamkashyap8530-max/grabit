@@ -5,7 +5,7 @@ import uuid
 import time
 
 from flask import Flask, request, jsonify, send_from_directory, abort, render_template
-
+from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -117,7 +117,7 @@ def send_file():
 
     for uploaded_file in uploaded_files:
         unique_suffix = uuid.uuid4().hex[:8]
-        stored_name = f"{code}_{unique_suffix}_{uploaded_file.filename}"
+        stored_name = f"{code}_{unique_suffix}_{secure_filename(uploaded_file.filename)}"
         save_path = os.path.join(UPLOAD_FOLDER, stored_name)
         uploaded_file.save(save_path)
 
