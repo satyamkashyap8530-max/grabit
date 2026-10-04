@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grabit - Share Files with a Code</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="/" class="logo">
+            <span class="logo-icon">↗</span>
+            <span>Gra<span>bit</span></span>
+        </a>
+
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/features">Features</a>
+            <a href="/about">About</a>
+        </nav>
+
+        <a href="#share" class="nav-btn">Get Started</a>
+
+        <button class="menu" id="menuBtn">☰</button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-copy">
+
+                <span class="badge">
+                    SIMPLE • FAST • CODE BASED
+                </span>
+
+                <h1>
+                    Share Files
+                    <br>
+                    with a <span>Code</span>
+                </h1>
+
+                <p>
+                    Upload your document, generate a unique code,
+                    and share that code with anyone. They can enter
+                    the code and download your file.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#share" class="btn primary">
+                        ↑ Upload a File
+                    </a>
+
+                    <a href="#share" class="btn secondary">
+                        ↓ Receive a File
+                    </a>
+
+                </div>
+
+                <div class="trust-row">
+
+                    <div>
+                        <b>◇</b>
+                        <small>
+                            Secure<br>
+                            Sharing
+                        </small>
+                    </div>
+
+                    <div>
+                        <b>ϟ</b>
+                        <small>
+                            Fast<br>
+                            Transfer
+                        </small>
+                    </div>
+
+                    <div>
+                        <b>▤</b>
+                        <small>
+                            Any File<br>
+                            Type
+                        </small>
+                    </div>
+
+                    <div>
+                        <b>✓</b>
+                        <small>
+                            Simple<br>
+                            & Easy
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO VISUAL -->
+
+            <div class="hero-visual">
+
+                <div class="float-file pdf">
+                    PDF
+                </div>
+
+                <div class="float-file word">
+                    W
+                </div>
+
+                <div class="float-file excel">
+                    X
+                </div>
+
+
+                <!-- Upload Card -->
+
+                <div class="workflow-card upload-card">
+
+                    <span class="step">1</span>
+
+                    <h3>Upload</h3>
+
+                    <div class="dropzone">
+
+                        <strong>☁</strong>
+
+                        <div>
+                            <b>Choose your document</b>
+                        </div>
+
+                        <small>
+                            PDF, DOC, PPT, images, etc.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Code Card -->
+
+                <div class="workflow-card code-card">
+
+                    <span class="step">2</span>
+
+                    <h3>Get a Code</h3>
+
+                    <div class="code-box">
+
+                        <span id="heroCode">
+                            ------
+                        </span>
+
+                        <button id="copyBtn">
+                            ▣
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Share Card -->
+
+                <div class="workflow-card share-card">
+
+                    <span class="step">3</span>
+
+                    <h3>Share the Code</h3>
+
+                    <p>
+                        Send the code to the person who needs
+                        the file.
+                    </p>
+
+                </div>
+
+
+                <!-- Receive Card -->
+
+                <div class="workflow-card receive-card">
+
+                    <span class="step">4</span>
+
+                    <h3>Receive & Download</h3>
+
+                    <div class="receive-mini">
+
+                        <input
+                            id="heroReceive"
+                            maxlength="10"
+                            placeholder="ENTER CODE">
+
+                        <button
+                            id="heroReceiveBtn">
+                            Receive
+                        </button>
+
+                    </div>
+
+                    <small id="heroReceiveStatus"></small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SHARE SECTION ================= -->
+
+        <section class="share-section" id="share">
+
+            <div class="section-heading">
+
+                <span>
+                    FILE SHARING
+                </span>
+
+                <h2>
+                    Share a file in seconds.
+                </h2>
+
+                <p>
+                    Upload one or more files, optionally add a link,
+                    choose an expiry time, and let Grabit generate
+                    a sharing code.
+                </p>
+
+            </div>
+
+
+            <div class="share-grid">
+
+
+                <!-- ================= UPLOAD PANEL ================= -->
+
+                <div class="action-panel">
+
+                    <div class="panel-icon">
+                        ↑
+                    </div>
+
+                    <h3>
+                        Send Files
+                    </h3>
+
+                    <p>
+                        Upload files and generate a secure
+                        sharing code.
+                    </p>
+
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        multiple
+                        hidden>
+
+
+                    <div
+                        class="dropzone main-drop"
+                        id="dropzone">
+
+                        <strong>☁</strong>
+
+                        <b>
+                            Drop files here
+                        </b>
+
+                        <small>
+                            or click to choose files
+                        </small>
+
+                    </div>
+
+
+                    <!-- LINK -->
+
+                    <div class="form-row">
+
+                        <label>
+                            Add a link
+                            <span>(optional)</span>
+                        </label>
+
+                        <input
+                            type="url"
+                            id="linkInput"
+                            placeholder="https://example.com">
+
+                    </div>
+
+
+                    <!-- CODE MODE -->
+
+                    <div class="form-row">
+
+                        <label>
+                            Code
+                        </label>
+
+                        <div class="radio-row">
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="codeMode"
+                                    id="modeAuto"
+                                    value="auto"
+                                    checked>
+                                Generate automatically
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="codeMode"
+                                    id="modeCustom"
+                                    value="custom">
+                                Use my own code
+                            </label>
+
+                        </div>
+
+
+                        <div
+                            class="custom-expiry-row hidden"
+                            id="customCodeRow">
+
+                            <input
+                                type="text"
+                                id="customCodeInput"
+                                maxlength="10"
+                                placeholder="Enter custom code">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EXPIRY -->
+
+                    <div class="form-row">
+
+                        <label>
+                            Expiry
+                        </label>
+
+                        <select id="expirySelect">
+
+                            <option value="1">
+                                1 hour
+                            </option>
+
+                            <option value="6">
+                                6 hours
+                            </option>
+
+                            <option value="12">
+                                12 hours
+                            </option>
+
+                            <option value="24" selected>
+                                24 hours
+                            </option>
+
+                            <option value="48">
+                                2 days
+                            </option>
+
+                            <option value="72">
+                                3 days
+                            </option>
+
+                            <option value="120">
+                                5 days
+                            </option>
+
+                            <option value="custom">
+                                Custom
+                            </option>
+
+                        </select>
+
+
+                        <div
+                            class="custom-expiry-row hidden"
+                            id="customExpiryRow">
+
+                            <input
+                                type="number"
+                                id="customExpiryInput"
+                                min="1"
+                                placeholder="Enter time">
+
+                            <select id="customExpiryUnit">
+
+                                <option value="hours">
+                                    Hours
+                                </option>
+
+                                <option value="days">
+                                    Days
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SEND -->
+
+                    <button
+                        class="btn primary wide"
+                        id="sendBtn">
+
+                        Generate Sharing Code
+
+                    </button>
+
+
+                    <div
+                        class="status"
+                        id="sendStatus">
+                    </div>
+
+
+                    <!-- RESULT -->
+
+                    <div
+                        class="result-card hidden"
+                        id="sendResult">
+
+                        <span>
+                            YOUR SHARING CODE
+                        </span>
+
+                        <strong id="genCode">
+                            ------
+                        </strong>
+
+                        <button id="copyBtn">
+                            Copy Code
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= RECEIVE PANEL ================= -->
+
+                <div class="action-panel receive-panel">
+
+                    <div class="panel-icon">
+                        ↓
+                    </div>
+
+                    <h3>
+                        Receive Files
+                    </h3>
+
+                    <p>
+                        Enter the sharing code to find
+                        and download your files.
+                    </p>
+
+
+                    <!-- IMPORTANT RECEIVE ROW -->
+
+                    <div class="receive-row">
+
+                        <input
+                            id="codeInput"
+                            maxlength="10"
+                            placeholder="ENTER CODE">
+
+                        <button
+                            id="receiveBtn"
+                            class="btn primary">
+
+                            Find Files
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="status"
+                        id="receiveStatus">
+                    </div>
+
+
+                    <!-- FILE LIST -->
+
+                    <div
+                        class="file-list hidden"
+                        id="fileListBox">
+
+                        <div id="fileList"></div>
+
+                    </div>
+
+
+                    <button
+                        id="downloadSelectedBtn"
+                        class="btn primary wide hidden">
+
+                        Download Selected
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= INFO ================= -->
+
+        <section class="info-strip">
+
+            <div>
+                <b>01</b>
+                <span>Simple</span>
+                <p>
+                    No complicated setup.
+                </p>
+            </div>
+
+            <div>
+                <b>02</b>
+                <span>Fast</span>
+                <p>
+                    Share files quickly.
+                </p>
+            </div>
+
+            <div>
+                <b>03</b>
+                <span>Flexible</span>
+                <p>
+                    Files and links supported.
+                </p>
+            </div>
+
+            <div>
+                <b>04</b>
+                <span>Code Based</span>
+                <p>
+                    Just share the code.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div>
+
+            <div class="footer-logo">
+                Grabit
+            </div>
+
+            <p>
+                Simple file sharing with a code.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/how-it-works">
+                How It Works
+            </a>
+
+            <a href="/features">
+                Features
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
